@@ -61,8 +61,8 @@ Users can browse top-rated television shows and films, perform live searches by 
 
 - **Core Framework:** React 18
 - **Build Tool:** Vite
-- **Routing:** React Router DOM v6
-- **Styling:** Tailwind CSS + PostCSS + Autoprefixer
+- **Routing:** React Router (`react-router`)
+- **Styling:** Tailwind CSS 4.3.3 (`@tailwindcss/vite` & `tailwindcss`)
 - **Icons:** Lucide React
 - **API Source:** [TVMaze API](https://www.tvmaze.com/api)
   - All Shows: `GET https://api.tvmaze.com/shows`

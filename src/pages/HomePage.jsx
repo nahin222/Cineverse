@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { ArrowRight, Film, Star, Sparkles, TrendingUp, Compass } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import HeroBanner from '../components/HeroBanner';

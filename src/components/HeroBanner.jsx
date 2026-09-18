@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { Sparkles, Play, Compass, Film } from 'lucide-react';
 
 export default function HeroBanner() {

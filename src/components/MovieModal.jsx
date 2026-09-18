@@ -33,7 +33,7 @@ export default function MovieModal({ movie, onClose }) {
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/80 backdrop-blur-md animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/80 backdrop-blur-md transition-opacity duration-200"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -41,7 +41,7 @@ export default function MovieModal({ movie, onClose }) {
     >
       {/* Modal Card Container */}
       <div 
-        className="relative w-full max-w-2xl bg-gray-900 border border-gray-700/80 rounded-2xl shadow-2xl overflow-hidden my-auto animate-modal"
+        className="relative w-full max-w-2xl bg-gray-900 border border-gray-700/80 rounded-2xl shadow-2xl overflow-hidden my-auto transform transition-all duration-200"
         onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
       >
         {/* Top Header Bar with Close Button [ ✕ ] */}

@@ -17,7 +17,6 @@ export default function MoviesPage() {
   const [error, setError] = useState(null);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
-  // Function to load default shows
   const loadShows = useCallback(async () => {
     try {
       setLoading(true);
@@ -32,7 +31,6 @@ export default function MoviesPage() {
     }
   }, []);
 
-  // Handle live search with debouncing
   useEffect(() => {
     let isCancelled = false;
 
@@ -68,23 +66,19 @@ export default function MoviesPage() {
     };
   }, [searchQuery]);
 
-  // Handle clear search
   const handleClearSearch = () => {
     setSearchQuery('');
   };
 
-  // Filter and sort movies in memory
   const displayedMovies = useMemo(() => {
     let list = [...movies];
 
-    // 1. Filter by Genre
     if (selectedGenre !== 'All') {
       list = list.filter((movie) =>
         movie.genres?.some((g) => g.toLowerCase() === selectedGenre.toLowerCase())
       );
     }
 
-    // 2. Sorting
     switch (sortBy) {
       case 'rating-desc':
         list.sort((a, b) => (b.rating || 0) - (a.rating || 0));
@@ -110,9 +104,7 @@ export default function MoviesPage() {
 
   return (
     <>
-      {/* Main Content Area */}
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
-        {/* Page Title & Subtitle */}
         <div className="text-center max-w-3xl mx-auto mb-8">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/60 border border-red-500/30 text-red-400 text-xs font-semibold uppercase tracking-wider mb-3">
             <Film className="w-3.5 h-3.5" />
@@ -126,7 +118,6 @@ export default function MoviesPage() {
           </p>
         </div>
 
-        {/* Search Bar at the Top (matching wireframe) */}
         <SearchBar
           value={searchQuery}
           onChange={setSearchQuery}
@@ -134,7 +125,6 @@ export default function MoviesPage() {
           isLoading={searching}
         />
 
-        {/* Filter and Sort Bar */}
         <FilterBar
           selectedGenre={selectedGenre}
           onSelectGenre={setSelectedGenre}
@@ -143,7 +133,6 @@ export default function MoviesPage() {
           totalCount={displayedMovies.length}
         />
 
-        {/* Error State */}
         {error && (
           <div className="p-6 rounded-2xl bg-red-950/40 border border-red-500/40 text-center max-w-xl mx-auto my-10 space-y-4">
             <AlertCircle className="w-10 h-10 text-red-400 mx-auto" />
@@ -158,11 +147,9 @@ export default function MoviesPage() {
           </div>
         )}
 
-        {/* Loading Skeleton */}
         {loading ? (
           <LoadingSkeleton count={12} />
         ) : displayedMovies.length === 0 ? (
-          /* Empty Search / Filter State */
           <div className="py-20 text-center space-y-4 max-w-md mx-auto">
             <div className="w-16 h-16 rounded-2xl bg-gray-900 border border-gray-800 flex items-center justify-center mx-auto text-gray-500">
               <Film className="w-8 h-8" />
@@ -184,7 +171,6 @@ export default function MoviesPage() {
             </button>
           </div>
         ) : (
-          /* Responsive Movie Grid: 1 col mobile, 2 col tablet, 3-4 col desktop */
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {displayedMovies.map((movie) => (
               <MovieCard
@@ -197,7 +183,6 @@ export default function MoviesPage() {
         )}
       </main>
 
-      {/* Movie Details Modal */}
       {selectedMovie && (
         <MovieModal
           movie={selectedMovie}

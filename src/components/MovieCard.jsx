@@ -15,22 +15,18 @@ export default function MovieCard({ movie, onSelect }) {
 
   return (
     <div className="group flex flex-col rounded-2xl bg-gray-900/80 border border-gray-800/90 overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-red-950/20 hover:border-gray-700/80 transition-all duration-300 hover:-translate-y-1.5">
-      {/* Poster Container */}
       <div className="relative aspect-[2/3] w-full bg-gray-950 overflow-hidden">
-        {/* Rating Badge Overlay */}
         <div className="absolute top-3 right-3 z-10 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-gray-950/80 backdrop-blur-md border border-amber-500/30 text-amber-400 text-xs font-bold shadow-md">
           <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
           <span>{ratingText}</span>
         </div>
 
-        {/* Primary Genre Tag */}
         {movie.genres && movie.genres.length > 0 && (
           <div className="absolute top-3 left-3 z-10 px-2 py-0.5 rounded-md bg-red-950/80 backdrop-blur-md border border-red-500/30 text-red-300 text-[11px] font-semibold">
             {movie.genres[0]}
           </div>
         )}
 
-        {/* Poster Image */}
         <img
           src={posterSrc}
           alt={movie.name}
@@ -42,14 +38,11 @@ export default function MovieCard({ movie, onSelect }) {
           }`}
         />
 
-        {/* Subtle hover gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
       </div>
 
-      {/* Card Content matching wireframe */}
       <div className="p-4 sm:p-5 flex flex-col flex-1 justify-between bg-gradient-to-b from-gray-900 to-[#0d131f]">
         <div>
-          {/* Title */}
           <h3 
             className="text-base sm:text-lg font-bold text-white tracking-tight line-clamp-1 group-hover:text-red-400 transition-colors"
             title={movie.name}
@@ -57,7 +50,6 @@ export default function MovieCard({ movie, onSelect }) {
             {movie.name}
           </h3>
 
-          {/* Metadata Row: Rating & Release Year */}
           <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-400 mt-2">
             <span className="flex items-center gap-1 font-semibold text-amber-400">
               <Star className="w-3.5 h-3.5 fill-current" />
@@ -71,7 +63,6 @@ export default function MovieCard({ movie, onSelect }) {
           </div>
         </div>
 
-        {/* Action Button: [ See Details ] */}
         <div className="mt-5 pt-3 border-t border-gray-800/60">
           <button
             type="button"

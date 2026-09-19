@@ -17,7 +17,6 @@ export default function HomePage() {
       try {
         setLoading(true);
         const data = await getShows();
-        // Curate top rated shows for the home page showcase
         const sorted = [...data]
           .filter((s) => s.rating && s.rating >= 7.5)
           .slice(0, 8);
@@ -33,10 +32,8 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero Banner matching wireframe specifications */}
       <HeroBanner />
 
-      {/* Featured Showcase Section */}
       <section id="featured" className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-10">
           <div>
@@ -58,7 +55,6 @@ export default function HomePage() {
           </Link>
         </div>
 
-        {/* Movie Cards Grid */}
         {loading ? (
           <LoadingSkeleton count={8} />
         ) : (
@@ -73,7 +69,6 @@ export default function HomePage() {
           </div>
         )}
 
-        {/* Explore More Banner */}
         <div className="mt-16 p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-red-950/40 via-gray-900 to-gray-900 border border-red-500/20 text-center relative overflow-hidden">
           <div className="relative z-10 max-w-2xl mx-auto space-y-4">
             <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
@@ -95,7 +90,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Movie Details Modal */}
       {selectedMovie && (
         <MovieModal
           movie={selectedMovie}

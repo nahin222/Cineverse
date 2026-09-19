@@ -13,12 +13,10 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 w-full bg-gray-900/80 backdrop-blur-md border-b border-gray-800/80 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
-          {/* Logo / Brand Name */}
           <Link to="/" className="flex items-center group">
             <Logo />
           </Link>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6">
             <Link
               to="/"
@@ -31,7 +29,6 @@ export default function Navbar() {
               Home
             </Link>
 
-            {/* Prominent [ Movies ] Button matching assignment wireframe: [ Movies ] */}
             <Link
               to="/movies"
               className={`inline-flex items-center gap-2 px-5 py-2 text-sm font-bold rounded-xl transition-all duration-200 shadow-md ${
@@ -45,7 +42,6 @@ export default function Navbar() {
             </Link>
           </nav>
 
-          {/* Mobile top-right actions */}
           <div className="flex md:hidden items-center gap-2.5">
             <Link
               to="/movies"
@@ -70,7 +66,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
         <div className="md:hidden border-b border-gray-800 bg-gray-900/95 backdrop-blur-xl px-4 pt-2 pb-6 space-y-3">
           <Link

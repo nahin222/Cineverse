@@ -10,14 +10,12 @@ export default function FilterBar({
 }) {
   return (
     <div className="mb-10 p-4 sm:p-5 rounded-2xl bg-gray-900/60 border border-gray-800/80 backdrop-blur-md shadow-xl">
-      {/* Top Header Row of FilterBar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3.5 pb-3 border-b border-gray-800/70">
         <div className="flex items-center gap-2 text-xs sm:text-sm font-bold text-gray-300 uppercase tracking-wider">
           <Tag className="w-4 h-4 text-red-500" />
           <span>Filter by Genre</span>
         </div>
 
-        {/* Sort & Count Controls */}
         <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-4">
           <div className="text-xs text-gray-400">
             Showing <span className="text-white font-bold px-1.5 py-0.5 rounded bg-gray-800 border border-gray-700/60">{totalCount}</span> {totalCount === 1 ? 'title' : 'titles'}
@@ -42,7 +40,6 @@ export default function FilterBar({
         </div>
       </div>
 
-      {/* Genre Pills: Wrap nicely without awkward horizontal scrollbar */}
       <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
         {GENRES.map((genre) => {
           const isSelected = selectedGenre === genre;

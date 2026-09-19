@@ -1,8 +1,5 @@
 const BASE_URL = 'https://api.tvmaze.com';
 
-/**
- * Normalizes a raw TVMaze item (handles both /shows format and /search/shows { score, show } format)
- */
 export function normalizeShow(item) {
   if (!item) return null;
   const show = item.show ? item.show : item;
@@ -27,9 +24,6 @@ export function normalizeShow(item) {
   };
 }
 
-/**
- * Fetches all default shows from TVMaze API (/shows)
- */
 export async function getShows() {
   try {
     const response = await fetch(`${BASE_URL}/shows`, {
@@ -42,14 +36,10 @@ export async function getShows() {
     return data.map(normalizeShow).filter(Boolean);
   } catch (error) {
     console.error('Failed to fetch shows from TVMaze:', error);
-    // Return sample offline fallback if network is unreachable
     return FALLBACK_SHOWS.map(normalizeShow);
   }
 }
 
-/**
- * Searches shows by query from TVMaze API (/search/shows?q=)
- */
 export async function searchShows(query) {
   if (!query || !query.trim()) {
     return getShows();
@@ -66,7 +56,6 @@ export async function searchShows(query) {
     return data.map(normalizeShow).filter(Boolean);
   } catch (error) {
     console.error(`Failed to search shows for "${query}":`, error);
-    // Local search filter on fallback shows if offline
     const q = query.toLowerCase();
     return FALLBACK_SHOWS
       .filter((s) => s.name.toLowerCase().includes(q) || s.genres.some((g) => g.toLowerCase().includes(q)))
@@ -74,9 +63,6 @@ export async function searchShows(query) {
   }
 }
 
-/**
- * Fetches single show details by ID
- */
 export async function getShowById(id) {
   try {
     const response = await fetch(`${BASE_URL}/shows/${id}`);
@@ -92,9 +78,6 @@ export async function getShowById(id) {
   }
 }
 
-/**
- * High-quality fallback shows in case the client is offline or network fails
- */
 export const FALLBACK_SHOWS = [
   {
     id: 1,

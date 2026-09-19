@@ -9,7 +9,6 @@ export default function Footer() {
     <footer className="border-t border-gray-800/80 bg-[#070b12] text-gray-400 py-12 px-4 sm:px-6 lg:px-8 mt-auto">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-gray-800/60">
-          {/* Brand Info with New Logo */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left gap-2">
             <Link to="/" className="inline-block group">
               <Logo size="small" />
@@ -19,7 +18,6 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Quick Links */}
           <div className="flex items-center gap-6 text-sm">
             <Link to="/" className="hover:text-white transition-colors">
               Home
@@ -38,7 +36,6 @@ export default function Footer() {
             </a>
           </div>
 
-          {/* Action Link */}
           <div className="flex items-center gap-3">
             <Link
               to="/movies"
@@ -50,7 +47,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Clean Copyright notice (no assignment references) */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-3">
           <p>© {currentYear} CineVerse. All rights reserved.</p>
           <p className="text-gray-500">

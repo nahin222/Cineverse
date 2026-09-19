@@ -4,7 +4,6 @@ export default function SearchBar({ value, onChange, onClear, isLoading }) {
   return (
     <div className="w-full max-w-3xl mx-auto mb-8">
       <div className="relative flex items-center">
-        {/* Search Icon */}
         <div className="absolute left-4 sm:left-5 pointer-events-none text-gray-400">
           {isLoading ? (
             <Loader2 className="w-5 h-5 animate-spin text-red-500" />
@@ -13,7 +12,6 @@ export default function SearchBar({ value, onChange, onClear, isLoading }) {
           )}
         </div>
 
-        {/* Input matching wireframe: Search for a movie... */}
         <input
           type="text"
           value={value}
@@ -23,7 +21,6 @@ export default function SearchBar({ value, onChange, onClear, isLoading }) {
           aria-label="Search movies"
         />
 
-        {/* Clear Button */}
         {value && (
           <button
             type="button"
@@ -36,7 +33,6 @@ export default function SearchBar({ value, onChange, onClear, isLoading }) {
         )}
       </div>
 
-      {/* Query status hint */}
       {value && (
         <div className="mt-2.5 px-2 flex items-center justify-between text-xs sm:text-sm text-gray-400">
           <span>

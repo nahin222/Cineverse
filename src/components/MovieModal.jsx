@@ -3,7 +3,6 @@ import { X, Star, Calendar, Clock, Globe, Tv, Layers, ExternalLink } from 'lucid
 import { stripHtml, formatRating, getReleaseYear, PLACEHOLDER_BACKDROP } from '../utils/formatters';
 
 export default function MovieModal({ movie, onClose }) {
-  // Prevent background body scroll & support Escape key closing
   useEffect(() => {
     if (!movie) return;
 
@@ -39,12 +38,10 @@ export default function MovieModal({ movie, onClose }) {
       aria-modal="true"
       aria-labelledby="modal-title"
     >
-      {/* Modal Card Container */}
       <div 
         className="relative w-full max-w-2xl bg-gray-900 border border-gray-700/80 rounded-2xl shadow-2xl overflow-hidden my-auto transform transition-all duration-200"
-        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
+        onClick={(e) => e.stopPropagation()}
       >
-        {/* Top Header Bar with Close Button [ ✕ ] */}
         <div className="absolute top-4 right-4 z-20">
           <button
             type="button"
@@ -56,7 +53,6 @@ export default function MovieModal({ movie, onClose }) {
           </button>
         </div>
 
-        {/* Movie Backdrop Image Section */}
         <div className="relative aspect-video sm:aspect-[21/9] w-full bg-gray-950 overflow-hidden">
           <img
             src={backdropSrc}
@@ -65,7 +61,6 @@ export default function MovieModal({ movie, onClose }) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent" />
           
-          {/* Subtle status tag on backdrop */}
           {movie.status && (
             <div className="absolute bottom-3 left-4 sm:left-6 px-2.5 py-1 rounded-md bg-gray-950/80 backdrop-blur-sm border border-gray-700/60 text-xs font-semibold text-gray-300">
               Status: <span className="text-white font-bold">{movie.status}</span>
@@ -73,15 +68,12 @@ export default function MovieModal({ movie, onClose }) {
           )}
         </div>
 
-        {/* Modal Body Content */}
         <div className="p-6 sm:p-8 space-y-6">
-          {/* Movie Title */}
           <div>
             <h2 id="modal-title" className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
               {movie.name}
             </h2>
 
-            {/* Key Metadata Row: ⭐ Rating: 8.5 | 📅 Release: 2024 */}
             <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-sm mt-3 text-gray-300">
               <span className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-400 font-bold">
                 <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
@@ -102,7 +94,6 @@ export default function MovieModal({ movie, onClose }) {
             </div>
           </div>
 
-          {/* Genres Tags */}
           {movie.genres && movie.genres.length > 0 && (
             <div>
               <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
@@ -122,7 +113,6 @@ export default function MovieModal({ movie, onClose }) {
             </div>
           )}
 
-          {/* Overview / Summary matching wireframe */}
           <div>
             <h4 className="text-sm font-bold text-gray-200 uppercase tracking-wider mb-2">
               Overview
@@ -132,7 +122,6 @@ export default function MovieModal({ movie, onClose }) {
             </p>
           </div>
 
-          {/* Additional details: Network, Language, Official Site */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t border-gray-800 text-xs sm:text-sm text-gray-400">
             <div className="flex items-center gap-2">
               <Tv className="w-4 h-4 text-gray-500" />
@@ -157,7 +146,6 @@ export default function MovieModal({ movie, onClose }) {
             )}
           </div>
 
-          {/* Bottom Action Footer matching wireframe: [ ❌ Close ] */}
           <div className="pt-4 border-t border-gray-800 flex justify-end">
             <button
               type="button"

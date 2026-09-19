@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { Search, Film, AlertCircle, RefreshCw, Sparkles } from 'lucide-react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import { Film, AlertCircle, RefreshCw } from 'lucide-react';
 import SearchBar from '../components/SearchBar';
 import FilterBar from '../components/FilterBar';
 import MovieCard from '../components/MovieCard';
@@ -19,8 +17,8 @@ export default function MoviesPage() {
   const [error, setError] = useState(null);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
-  // Load initial shows from /shows
-  const loadInitialShows = useCallback(async () => {
+  // Function to load default shows
+  const loadShows = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -34,34 +32,41 @@ export default function MoviesPage() {
     }
   }, []);
 
+  // Handle live search with debouncing
   useEffect(() => {
-    loadInitialShows();
-  }, [loadInitialShows]);
+    let isCancelled = false;
 
-  // Debounced search query handler
-  useEffect(() => {
-    if (!searchQuery.trim()) {
-      // If query cleared, reload all shows
-      loadInitialShows();
-      return;
-    }
-
-    setSearching(true);
-    const timeoutId = setTimeout(async () => {
+    const timer = setTimeout(async () => {
       try {
+        if (searchQuery.trim()) {
+          setSearching(true);
+        }
         setError(null);
-        const results = await searchShows(searchQuery);
-        setMovies(results);
-      } catch (err) {
-        console.error('Error searching shows:', err);
-        setError('Search failed. Please try a different search term.');
-      } finally {
-        setSearching(false);
-      }
-    }, 350); // 350ms debounce
+        const results = searchQuery.trim()
+          ? await searchShows(searchQuery)
+          : await getShows();
 
-    return () => clearTimeout(timeoutId);
-  }, [searchQuery, loadInitialShows]);
+        if (!isCancelled) {
+          setMovies(results);
+        }
+      } catch (err) {
+        if (!isCancelled) {
+          console.error('Fetch error:', err);
+          setError('Search failed. Please try again.');
+        }
+      } finally {
+        if (!isCancelled) {
+          setSearching(false);
+          setLoading(false);
+        }
+      }
+    }, searchQuery.trim() ? 350 : 0);
+
+    return () => {
+      isCancelled = true;
+      clearTimeout(timer);
+    };
+  }, [searchQuery]);
 
   // Handle clear search
   const handleClearSearch = () => {
@@ -104,10 +109,7 @@ export default function MoviesPage() {
   }, [movies, selectedGenre, sortBy]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0b0f19]">
-      {/* Top Navigation */}
-      <Navbar />
-
+    <>
       {/* Main Content Area */}
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
         {/* Page Title & Subtitle */}
@@ -147,7 +149,7 @@ export default function MoviesPage() {
             <AlertCircle className="w-10 h-10 text-red-400 mx-auto" />
             <p className="text-red-200 text-sm font-medium">{error}</p>
             <button
-              onClick={loadInitialShows}
+              onClick={loadShows}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-bold transition-all shadow-md"
             >
               <RefreshCw className="w-4 h-4" />
@@ -195,9 +197,6 @@ export default function MoviesPage() {
         )}
       </main>
 
-      {/* Footer */}
-      <Footer />
-
       {/* Movie Details Modal */}
       {selectedMovie && (
         <MovieModal
@@ -205,6 +204,6 @@ export default function MoviesPage() {
           onClose={() => setSelectedMovie(null)}
         />
       )}
-    </div>
+    </>
   );
 }

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Star, Calendar, Info, Film } from 'lucide-react';
+import { useState } from 'react';
+import { Star, Calendar, Info } from 'lucide-react';
 import { formatRating, getReleaseYear, PLACEHOLDER_POSTER } from '../utils/formatters';
 
 export default function MovieCard({ movie, onSelect }) {

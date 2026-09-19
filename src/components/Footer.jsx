@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router';
 import { Globe, Film } from 'lucide-react';
 import Logo from './Logo';

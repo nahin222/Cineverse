@@ -1,4 +1,3 @@
-import React from 'react';
 import { Search, X, Loader2 } from 'lucide-react';
 
 export default function SearchBar({ value, onChange, onClear, isLoading }) {

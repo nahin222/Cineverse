@@ -1,18 +1,5 @@
-import React from 'react';
-import { Tag, ArrowUpDown, Film } from 'lucide-react';
-
-export const GENRES = [
-  'All',
-  'Drama',
-  'Action',
-  'Comedy',
-  'Science-Fiction',
-  'Thriller',
-  'Crime',
-  'Horror',
-  'Romance',
-  'Adventure',
-];
+import { Tag, ArrowUpDown } from 'lucide-react';
+import { GENRES } from '../constants/genres';
 
 export default function FilterBar({
   selectedGenre,

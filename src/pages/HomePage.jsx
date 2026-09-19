@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
-import { ArrowRight, Film, Star, Sparkles, TrendingUp, Compass } from 'lucide-react';
-import Navbar from '../components/Navbar';
+import { ArrowRight, TrendingUp, Compass } from 'lucide-react';
 import HeroBanner from '../components/HeroBanner';
-import Footer from '../components/Footer';
 import MovieCard from '../components/MovieCard';
 import MovieModal from '../components/MovieModal';
 import LoadingSkeleton from '../components/LoadingSkeleton';
@@ -34,10 +32,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0b0f19]">
-      {/* Top Navigation */}
-      <Navbar />
-
+    <>
       {/* Hero Banner matching wireframe specifications */}
       <HeroBanner />
 
@@ -100,9 +95,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <Footer />
-
       {/* Movie Details Modal */}
       {selectedMovie && (
         <MovieModal
@@ -110,6 +102,6 @@ export default function HomePage() {
           onClose={() => setSelectedMovie(null)}
         />
       )}
-    </div>
+    </>
   );
 }

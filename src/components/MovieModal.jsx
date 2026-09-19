@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { X, Star, Calendar, Clock, Globe, Tv, Layers, ExternalLink } from 'lucide-react';
 import { stripHtml, formatRating, getReleaseYear, PLACEHOLDER_BACKDROP } from '../utils/formatters';
 

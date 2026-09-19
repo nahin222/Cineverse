@@ -1,5 +1,6 @@
 const BASE_URL = 'https://api.tvmaze.com';
 
+//formatting all data into one fixed format
 export function normalizeShow(item) {
   if (!item) return null;
   const show = item.show ? item.show : item;
@@ -77,6 +78,8 @@ export async function getShowById(id) {
     return found ? normalizeShow(found) : null;
   }
 }
+
+//if API is not working, this will load up instead
 
 export const FALLBACK_SHOWS = [
   {
